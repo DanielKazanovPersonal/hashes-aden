@@ -47,6 +47,13 @@ public class MyIntHash {
 	public MyIntHash(MODE mode, double load_factor) {
 		// TODO Part1: initialize table size, size, mode, and load_factor
 		//             Instantiate hashTable1 and initialize it
+		tableSize = INITIAL_SIZE;
+		size = 0;
+		this.mode = mode;
+		this.load_factor = load_factor;
+		
+		hashTable1 = new int[tableSize];
+		initHashTable(hashTable1);
 	}
 
 	/**
@@ -58,6 +65,10 @@ public class MyIntHash {
 	 */
 	private void initHashTable(int[] hashTable) {
 		// TODO Part1: Write this method 
+		for (int i = 0; i < hashTable.length; i++) {
+			hashTable[i] = -1;
+		}
+		size = 0;
 	}
 	
 	/**
@@ -68,7 +79,7 @@ public class MyIntHash {
 	 */
 	private int hashFx(int key) {
 		// TODO Part1: Write this method.
-		return -1;
+		return key % tableSize;
 	}
 	
 	/**
@@ -184,6 +195,23 @@ public class MyIntHash {
 	 */
 	private boolean add_LP(int key) {
 		// TODO Part1: Write this function
+		int index = hashFx(key);
+		
+		for (int i = 0; i < tableSize; i++) {
+			if (index == tableSize) {
+				index = 0;
+			}
+			if (hashTable1[index] == key) {
+				return false;
+			}
+			if (hashTable1[index] == -1) {
+				hashTable1[index] = key;
+				size++;
+				return true;
+			}
+			index++;
+		}
+		
 		return false;
 	}
 	
@@ -192,7 +220,7 @@ public class MyIntHash {
 	 * A key condition is that there are no open spaces between any values with collisions, 
 	 * independent of where they are stored.
 	 * 
-	 * Starting a the index from hashFx(key), sequentially search through the hash until:
+	 * Starting at the index from hashFx(key), sequentially search through the hash until:
 	 * a) the key matches the value at the index --> return true
 	 * b) there is no valid data at the current index --> return false
 	 * 
@@ -203,6 +231,18 @@ public class MyIntHash {
 	 */
 	private boolean contains_LP(int key) {
 		// TODO Part1: Write this method.
+		int index = hashFx(key);
+		
+		for (int i = 0; i < tableSize; i++) {
+			if (index == tableSize) {
+				index = 0;
+			}
+			if (hashTable1[index] == key) {
+				return true;
+			}
+			index++;
+		}
+		
 		return false;
 	}
 	
@@ -238,7 +278,7 @@ public class MyIntHash {
 	int getHashAt(int index, int offset) {
 		// TODO Part1: as you code this project, you will add different cases. for now, complete the case for Linear Probing
 		switch (mode) {
-		//case Linear : return // What needs to go here??? write this and uncomment
+		case Linear : return hashTable1[index]; // What needs to go here??? write this and uncomment
 		}
 		return -1;
 	}
@@ -250,7 +290,7 @@ public class MyIntHash {
 	 */
 	public int size() {
 		// TODO Part1: Write this method
-		return -1;
+		return size;
 	}
 
 	/**
@@ -259,7 +299,7 @@ public class MyIntHash {
 	 */
 	public void clear() {
 		// TODO Part1: Write this method
-		return -1;
+		initHashTable(hashTable1);
 	}
 
 	/**
@@ -269,7 +309,7 @@ public class MyIntHash {
 	 */
 	public boolean isEmpty() {
 		// TODO Part1: Write this method
-		return true;
+		return size == 0;
 	}
 
 	/**
