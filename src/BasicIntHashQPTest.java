@@ -429,6 +429,35 @@ class BasicIntHashQPTest {
 		assertTrue(hash.add(checkSize-1));  
 	}
 	
+	/**
+	 * Basic hash func test. Tests the basic functionality of the clear QP hash function
+	 * by adding keys from 0 to size -1 of the hash. Tests that entries are where 
+	 * they should be. No collisions. Then tests clear to show that the full array is cleared
+	 */
+	@Test
+	@Order(13)
+	void BasicHashClearQP_test() {
+		hash = new MyIntHash(MyIntHash.MODE.Quadratic,1.1);
+		System.out.println("Clear Test: Quadratic Probing Hash");
+		int size = hash.getTableSize();
+		assertEquals(31,size);
+		assertEquals(0,hash.size());
+		assertTrue(hash.isEmpty());
+		for (int i = 0; i < size; i++) {
+			assertTrue(hash.add(i));
+			assertEquals(i, hash.getHashAt(i, 0));
+			assertFalse(hash.isEmpty());
+		}
+		assertEquals(size,hash.getTableSize());
+		
+		hash.clear();
+		assertEquals(0, hash.size());
+		assertTrue(hash.isEmpty());
+		for (int i = 0; i < size; i++) {
+			assertEquals(-1,hash.getHashAt(i, 0));
+		}
+	}
+	
 	private boolean canPlace(Integer randKey) {
 		int base = randKey % 31;
 		for (int ind = 0; ind < 31; ind++) {
