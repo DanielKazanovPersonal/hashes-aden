@@ -92,9 +92,13 @@ public class MyIntHash {
 	 */
 	public boolean add(int key) {
 		
-		// TODO: Part2 - if adding this key would cause the the hash load to exceed the load_factor, grow the hash.
+		// TODO: Part2 - if adding this key would cause the hash load to exceed the load_factor, grow the hash.
 		//      Note that you cannot just use size in the numerator... 
 		//      Write the code to implement this check and call growHash() if required (no parameters)
+		double currentLoad = (size + 1.0) / tableSize;
+		if (currentLoad >= load_factor) {
+			growHash();
+		}
 		
 		switch (mode) {
 			case Linear : return add_LP(key); 
@@ -144,7 +148,7 @@ public class MyIntHash {
 	}
 	
 	/**
-	 * Grow hash. This the specific function that will grow the hash table in Linear or 
+	 * Grow hash. This is the specific function that will grow the hash table in Linear or 
 	 * Quadratic modes. This method will:
 	 * 	1. save the current hash table, 
 	 *  2. create a new version of hashTable1
@@ -156,6 +160,16 @@ public class MyIntHash {
 	 */
 	private void growHash(int[] table, int newSize) {
 		// TODO Part2:  Write this method
+		int[] currentTable = table.clone(); // save the current hash table
+		hashTable1 = new int[newSize];
+		initHashTable(hashTable1);
+		tableSize = newSize;
+		
+		for (int i = 0; i < currentTable.length; i++) {
+			if (currentTable[i] != -1) { // only add valid entries (empty entries are -1)
+				add(currentTable[i]);
+			}
+		}
 	}
 	
 	/**
@@ -167,7 +181,13 @@ public class MyIntHash {
 	 */
 	private int getNewTableSize(int startSize) {
 		// TODO Part2: Write this method
-		return -1;
+		int newSize = startSize * 2; // greater than 2x the passed in size
+		
+		while (!isPrime(newSize)) { // iterate through every number until prime number is found
+			newSize++;
+		}
+		
+		return newSize;
 	}
 	
 	/**
@@ -178,7 +198,16 @@ public class MyIntHash {
 	 */
 	private boolean isPrime(int size) {
 		// TODO Part2: Write this method
-		return false;
+		if (size <= 1) {
+			return false;
+		}
+		for (int i = 2; i < Math.sqrt(size); i += 2) { // iterating by 2 for more efficiency
+			if (size % i == 0) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -204,7 +233,7 @@ public class MyIntHash {
 			if (hashTable1[index] == key) {
 				return false;
 			}
-			if (hashTable1[index] == -1) {
+			if (hashTable1[index] < 0) { // < 0 because of remove method utilization of -2
 				hashTable1[index] = key;
 				size++;
 				return true;
@@ -250,21 +279,34 @@ public class MyIntHash {
 	 * Remove - uses the Linear Problem method to evict a key from the hash, if it exists
 	 * A key requirement of this function is that the evicted key cannot introduce an open space
 	 * if there are subsequent values which had collisions...
-	 * 
-	 * 1) Identify if the key exists by walking sequentially through the hash table, starting at hashFx(key) 
-	 *    - if not return false,
-	 * 2) from the index where the key value was found, search sequentially through the table, recording
-	 *    any values that collide with hashFx(key) until either an open space if found or the full table has been processed.
-	 *    If a collision was found, replace the key value with the collision value, and set the value at the collision index to an open space;
-	 *    otherwise, set the key value to indicate an open space... I would recommend writing a helper method to implement this logic; it
-	 *    would simply return the value to replace the key value with...
 	 *
 	 * @param key the key
 	 * @return true, if successful
 	 */
 	private boolean remove_LP(int key) {
 		// TODO Part2: Write this function
-		return false;		
+		int target = hashFx(key);
+		
+		for (int i = 0; i < tableSize; i++) {
+			if (target == tableSize) {
+				target = 0;
+			}
+			if (hashTable1[target] == key) { // found target number
+				if (((target + 1 < tableSize) && (hashTable1[target + 1] != -1)) ||
+						((target + 1 >= tableSize) && (hashTable1[0] != -1))) {
+					hashTable1[target] = -2; // indicate that the entry has been removed
+					size--;
+					return true;
+				} else {
+					hashTable1[target] = -1; // indicate empty entry
+					size--;
+					return true;
+				}
+			}
+			target++;
+		}
+		
+		return false;
 	}
 		
 	/**

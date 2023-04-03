@@ -429,8 +429,8 @@ class BasicIntHashQPTest {
 		assertTrue(hash.add(checkSize-1));  
 	}
 	
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 	/**
 	 * Basic hash func test. Tests the basic functionality of the clear QP hash function
 	 * by adding keys from 0 to size -1 of the hash. Tests that entries are where 
@@ -460,7 +460,7 @@ class BasicIntHashQPTest {
 		}
 	}
 	
->>>>>>> 2a6252ba9b6c1f197275b02404662353a3dcebfc
+//>>>>>>> 2a6252ba9b6c1f197275b02404662353a3dcebfc
 	private boolean canPlace(Integer randKey) {
 		int base = randKey % 31;
 		for (int ind = 0; ind < 31; ind++) {
