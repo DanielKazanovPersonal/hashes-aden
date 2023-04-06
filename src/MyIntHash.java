@@ -66,6 +66,9 @@ public class MyIntHash {
 		} else {
 			MAX_QP_LOOP = MAX_QP_OFFSET;
 		}
+		
+		hashTableLL = new LinkedList[tableSize];
+		initHashTable(hashTableLL);
 	}
 
 	/**
@@ -79,6 +82,19 @@ public class MyIntHash {
 		// TODO Part1: Write this method 
 		for (int i = 0; i < hashTable.length; i++) {
 			hashTable[i] = -1;
+		}
+		size = 0;
+	}
+	
+	/**
+	 * Initializes the provided LinkedList<Integer>[] hashTable - setting all entries to null
+	 * Overloaded method for LinkedList implementation
+	 * 
+	 * @param hashTable the hash table
+	 */
+	private void initHashTable(LinkedList<Integer>[] hashTable) {
+		for (int i = 0; i < hashTable.length; i++) {
+			hashTable[i] = null;
 		}
 		size = 0;
 	}
@@ -114,6 +130,7 @@ public class MyIntHash {
 		switch (mode) {
 			case Linear : return add_LP(key); 
 			case Quadratic : return add_QP(key);
+			case LinkedList : return add_LL(key);
 			default : return add_LP(key);
 		}
 	}
@@ -129,6 +146,7 @@ public class MyIntHash {
 		switch (mode) {
 			case Linear : return contains_LP(key); 
 			case Quadratic : return contains_QP(key);
+			case LinkedList : return contains_LL(key);
 			default : return contains_LP(key);
 		}
 	}
@@ -144,6 +162,7 @@ public class MyIntHash {
 		switch (mode) {
 			case Linear : return remove_LP(key); 
 			case Quadratic : return remove_QP(key);
+			case LinkedList : return remove_LL(key);
 			default : return remove_LP(key);
 		}
 	}
@@ -159,6 +178,7 @@ public class MyIntHash {
 		switch (mode) {
 			case Linear: growHash(hashTable1,newSize); break;
 			case Quadratic : growHash_QP(hashTable1,newSize); break;
+			case LinkedList : growHash(hashTableLL,newSize); break;
 		}
 	}
 	
@@ -215,6 +235,35 @@ public class MyIntHash {
 		for (int i = 0; i < currentTable.length; i++) {
 			if (currentTable[i] != -1) { // only add valid entries (empty entries are -1)
 				add(currentTable[i]);
+			}
+		}
+	}
+	
+	/**
+	 *  Grow hash. This is the specific function that will grow the hash table in LinkedList mode.
+	 *  Overloaded method for LinkedList structure
+	 *  
+	 *  1. save the current hash table, 
+	 *  2. create a new version of hashTableLL
+	 *  3. update tableSize and size
+	 *  4. add all valid entries from the old hash table into the new hash table
+	 *  
+	 * @param table the table
+	 * @param newSize the new size
+	 */
+	private void growHash(LinkedList<Integer>[] table, int newSize) {
+		LinkedList<Integer>[] currentTable = table.clone(); // save the current hash table
+		hashTableLL = new LinkedList[newSize];
+		initHashTable(hashTableLL);
+		tableSize = newSize;
+		
+		for (int i = 0; i < currentTable.length; i++) {
+			LinkedList<Integer> counterList = currentTable[i];
+			
+			if (counterList != null) { // only add valid entries (empty entries are null)
+				for (int j = 0; j < counterList.size(); j++) {
+					add_LL(counterList.get(j));
+				}
 			}
 		}
 	}
@@ -321,6 +370,32 @@ public class MyIntHash {
 	}
 	
 	/**
+	 *  Adds the key using the LinkedList structure:
+	 *  
+	 *  Only adds if key doesn't already exist, otherwise always successful
+	 *  
+	 * @param key the key
+	 * @return true, if successful
+	 */
+	private boolean add_LL(int key) {
+		int index = hashFx(key);
+		
+		if (hashTableLL[index] == null) {
+			hashTableLL[index] = new LinkedList<Integer>();
+			hashTableLL[index].add(key);
+			size++;
+			return true;
+		}
+		if (contains_LL(key)) {
+			return false;
+		}
+		
+		hashTableLL[index].add(key);
+		size++;
+		return true;
+	}
+	
+	/**
 	 * Contains - uses the Linear Probing method to determine if the key exists in the hash
 	 * A key condition is that there are no open spaces between any values with collisions, 
 	 * independent of where they are stored.
@@ -375,6 +450,24 @@ public class MyIntHash {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Contains - uses the LinkedList structure to determine if the key exists in the hash
+	 * 
+	 * If no matches found return false
+	 * 
+	 * @param key the key
+	 * @return true, if successful
+	 */
+	private boolean contains_LL(int key) {
+		int index = hashFx(key);
+		
+		if (hashTableLL[index] == null) {
+			return false;
+		}
+		
+		return hashTableLL[index].contains(key);
 	}
 	
 	/**
@@ -440,6 +533,29 @@ public class MyIntHash {
 		
 		return false;
 	}
+	
+	/**
+	 * Remove - uses LinkedList structure to evict a key from the hash, if it exists
+	 * 
+	 * @param key the key
+	 * @return true, if successful
+	 */
+	private boolean remove_LL(int key) {
+		if (!contains_LL(key)) {
+			return false;
+		}
+		
+		int index = hashFx(key);
+		
+		hashTableLL[index].remove((Integer) key);
+		size--;
+		
+		if (hashTableLL[index].isEmpty()) {
+			hashTableLL[index] = null;
+		}
+		
+		return true;
+	}
 		
 	/**
 	 * Gets the hash at. Returns the value of the hash at the specified index, and (if required by the operating mode) the specified offset.
@@ -454,6 +570,15 @@ public class MyIntHash {
 		switch (mode) {
 			case Linear : return hashTable1[index]; // What needs to go here??? write this and uncomment
 			case Quadratic : return hashTable1[index];
+			case LinkedList : 
+				if (hashTableLL[index] == null) {
+					return null;
+				}
+				if (offset < 0 || offset >= hashTableLL[index].size()) {
+					return -1;
+				} else {
+					return hashTableLL[index].get(offset);
+				}
 		}
 		return -1;
 	}
@@ -477,6 +602,7 @@ public class MyIntHash {
 		switch (mode) {
 			case Linear : initHashTable(hashTable1);
 			case Quadratic : initHashTable(hashTable1);
+			case LinkedList : initHashTable(hashTableLL);
 			default : initHashTable(hashTable1);
 		}
 	}
