@@ -257,7 +257,46 @@ class BasicIntHashLP2Test {
 		}
 		assertEquals(0, hash.size());
 	}	
-	
+
+	/**
+	 * Basic hash Remove collision test. This test fills all but one entry in the hash with colliding indexes, and the
+	 * removes them in the reverse order. This should leave the entire array filled with EMPTY
+	 */
+	@Test
+	@Order(6)
+	void BasicHashRemoveCollisionB_test() {
+		hash = new MyIntHash(MyIntHash.MODE.Linear,1.1);
+		System.out.println("Basic Test #6B: Hash Remove with Collision handling");
+		int size = hash.getTableSize();
+		assertEquals(31,size);
+		int stIndex = 3;
+		for (int i = 0; i < size-1; i++) {
+			int key = i*size + stIndex ;
+			assertFalse(hash.contains(key));
+			assertTrue(hash.add(key));
+		}
+		
+		int replIndex =(stIndex+size-2)%size;
+		int key = hash.getHashAt(replIndex,0);
+		for (int i = size-2; i >= 0; i--) {
+			assertTrue(hash.remove(key));
+			assertFalse(hash.contains(key));
+			assertEquals(EMPTY,hash.getHashAt(replIndex, 0));
+			System.out.println("   Successfully set contents at replIndex ["+replIndex+"] to REMOVED");
+			replIndex --;
+			if (replIndex < 0) replIndex += size;
+			int index = replIndex;
+			for (int j = i-1; j >=0; j--) {
+				int expect = j*size+stIndex;
+				assertTrue(hash.contains(expect));
+				assertEquals(expect,hash.getHashAt(index,0));
+				index--;
+				if (index < 0) index +=size;
+			}
+			key = (i-1)*size+stIndex;	
+		}
+		assertEquals(0, hash.size());
+	}		
 	/**
 	 * Basic hash Remove collision test. This test fills the hash with colliding indexes, and the
 	 * removes them in the same order. This should leave the entire array filled with REMOVED
@@ -378,10 +417,49 @@ class BasicIntHashLP2Test {
 			}
 			assertEquals(checkSize,hash.getTableSize());
 		}
+		for (int i = 0; i < size; i++) {
+			assertEquals(i, hash.getHashAt(i,0));
+		}
 		assertTrue(hash.add(checkSize - 1));  
+		assertEquals(checkSize -1, hash.getHashAt(checkSize-1,0));
 	}
 	
-	
+	/**
+	 * Basic hash grow test. Tests to see that the hash grows as expected when the addition of a new value would
+	 * exceed the load factor. Uses basic data from 31 to 61
+	 */
+	@Test
+	@Order(9)
+	void BasicHashGrowB_test() {
+		hash = new MyIntHash(MyIntHash.MODE.Linear,0.75);
+		System.out.println("Basic Test #6: Hash GrowthB - Exceeding Load Factor ");
+		int size = hash.getTableSize();
+		assertEquals(31,size);
+		int checkSize = size;
+		for (int i = 0; i < size; i++) {
+			assertTrue(hash.add(i+size));
+			if (hash.getTableSize() == 31) 
+				assertEquals(i+31,hash.getHashAt(i, 0));
+			else 
+				assertEquals(i+31,hash.getHashAt(i+31, 0));
+				
+			if ((i+1)/(1.0*checkSize)>0.75) {
+				System.out.println("   Exceeded load factor: "+hash.getLoad_factor()+" size="+hash.size()+"  table size = "+size);
+				System.out.println("   New table size is "+hash.getTableSize());
+			    assertFalse(checkSize == hash.getTableSize());
+			    checkSize = hash.getTableSize();
+			    for (int j = 0; j < i; j++) {
+			    	assertTrue(hash.contains(j+31));
+			    }
+			}
+			assertEquals(checkSize,hash.getTableSize());
+		}
+		for (int i = 0; i < size; i++) {
+			assertEquals(i+31, hash.getHashAt(i+31,0));
+		}
+		assertTrue(hash.add(checkSize - 1));  
+		assertEquals(checkSize -1, hash.getHashAt(checkSize-1,0));
+	}	
 	/**
 	 * Basic hash grow rand test. Similar to Test 6, but with randomize data - collisions are not prevented, and
 	 * are likely to occur naturally.
