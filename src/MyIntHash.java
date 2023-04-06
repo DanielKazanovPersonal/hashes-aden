@@ -1,3 +1,4 @@
+
 import java.util.LinkedList;
 
 // TODO: Auto-generated Javadoc
@@ -37,12 +38,17 @@ public class MyIntHash {
 	/** The hash table LL. */
 	private LinkedList<Integer>[] hashTableLL;
 	
+	/** The max offset. */
+	private final int MAX_QP_OFFSET = 2<<15;
+	
+	/** The limit for loops in add_QP, remove_QP and contains_QP. */
+	private int MAX_QP_LOOP;
 	
 	/**
 	 * Instantiates a new my int hash. For Part1 JUnit Testing, the load_factor will be set to 1.0
 	 *
 	 * @param mode the mode
-	 * @param load_factor the load factor
+	 * @param load_factor the load fact or
 	 */
 	public MyIntHash(MODE mode, double load_factor) {
 		// TODO Part1: initialize table size, size, mode, and load_factor
@@ -54,6 +60,12 @@ public class MyIntHash {
 		
 		hashTable1 = new int[tableSize];
 		initHashTable(hashTable1);
+		
+		if (MAX_QP_OFFSET >= tableSize / 2) {
+			MAX_QP_LOOP = tableSize / 2;
+		} else {
+			MAX_QP_LOOP = MAX_QP_OFFSET;
+		}
 	}
 
 	/**
@@ -91,7 +103,6 @@ public class MyIntHash {
 	 * @return true, if successful
 	 */
 	public boolean add(int key) {
-		
 		// TODO: Part2 - if adding this key would cause the hash load to exceed the load_factor, grow the hash.
 		//      Note that you cannot just use size in the numerator... 
 		//      Write the code to implement this check and call growHash() if required (no parameters)
@@ -102,6 +113,7 @@ public class MyIntHash {
 		
 		switch (mode) {
 			case Linear : return add_LP(key); 
+			case Quadratic : return add_QP(key);
 			default : return add_LP(key);
 		}
 	}
@@ -116,6 +128,7 @@ public class MyIntHash {
 	public boolean contains(int key) {
 		switch (mode) {
 			case Linear : return contains_LP(key); 
+			case Quadratic : return contains_QP(key);
 			default : return contains_LP(key);
 		}
 	}
@@ -130,6 +143,7 @@ public class MyIntHash {
 	public boolean remove(int key) {
 		switch (mode) {
 			case Linear : return remove_LP(key); 
+			case Quadratic : return remove_QP(key);
 			default : return remove_LP(key);
 		}
 	}
@@ -143,7 +157,8 @@ public class MyIntHash {
 	private void growHash() {
 		int newSize = getNewTableSize(tableSize);
 		switch (mode) {
-		case Linear: growHash(hashTable1,newSize); break;
+			case Linear: growHash(hashTable1,newSize); break;
+			case Quadratic : growHash_QP(hashTable1,newSize); break;
 		}
 	}
 	
@@ -164,6 +179,38 @@ public class MyIntHash {
 		hashTable1 = new int[newSize];
 		initHashTable(hashTable1);
 		tableSize = newSize;
+		
+		for (int i = 0; i < currentTable.length; i++) {
+			if (currentTable[i] != -1) { // only add valid entries (empty entries are -1)
+				add(currentTable[i]);
+			}
+		}
+	}
+	
+	/**
+	 * Grow hash. This is the specific function that will grow the hash table in Quadratic modes.
+	 * This method will:
+	 * 
+	 * 	1. save the current hash table, 
+	 *  2. create a new version of hashTable1
+	 *  3. update tableSize and size
+	 *  4. add all valid entries from the old hash table into the new hash table
+	 *  5. Calculate new MAX_QP_OFFSET value based off tableSize
+	 * 
+	 * @param table the table
+	 * @param newSize the new size
+	 */
+	private void growHash_QP(int[] table, int newSize) {
+		int[] currentTable = table.clone(); // save the current hash table
+		hashTable1 = new int[newSize];
+		initHashTable(hashTable1);
+		tableSize = newSize;
+		
+		if (MAX_QP_OFFSET >= tableSize / 2) { // recalculate the value for MAX_QP_OFFSET based off potentially new tableSize
+			MAX_QP_LOOP = tableSize / 2;
+		} else {
+			MAX_QP_LOOP = MAX_QP_OFFSET;
+		}
 		
 		for (int i = 0; i < currentTable.length; i++) {
 			if (currentTable[i] != -1) { // only add valid entries (empty entries are -1)
@@ -198,11 +245,11 @@ public class MyIntHash {
 	 */
 	private boolean isPrime(int size) {
 		// TODO Part2: Write this method
-		if (size <= 1) {
+		if (size <= 1) { // automatically not a prime number
 			return false;
 		}
-		for (int i = 2; i < Math.sqrt(size); i += 2) { // iterating by 2 for more efficiency
-			if (size % i == 0) {
+		for (int i = 2; i < Math.sqrt(size); i++) {
+			if (size % i == 0) { // if not prime return false
 				return false;
 			}
 		}
@@ -245,6 +292,35 @@ public class MyIntHash {
 	}
 	
 	/**
+	 * Adds the key using the Quadratic probing strategy:
+	 * 
+	 * If no empty slots are found, return false - this would indicate that the hash needs to grow...
+	 * 
+	 * @param key the key
+	 * @return true, if successful
+	 */
+	private boolean add_QP(int key) {
+		int st_index = hashFx(key);
+		int index;
+
+		for (int i = 0; i < MAX_QP_LOOP; i++) {
+			index = (st_index + i * i) % tableSize;
+
+			if (hashTable1[index] == key) {
+				return false;
+			}
+			if (hashTable1[index] < 0) { // < 0 because of remove method utilization of -2
+				hashTable1[index] = key;
+				size++;
+				return true;
+			}
+		}
+		
+		growHash(); // grow the hash if no space is available
+		return add_QP(key); // repeat process until either added or no more space is possible
+	}
+	
+	/**
 	 * Contains - uses the Linear Probing method to determine if the key exists in the hash
 	 * A key condition is that there are no open spaces between any values with collisions, 
 	 * independent of where they are stored.
@@ -270,6 +346,32 @@ public class MyIntHash {
 				return true;
 			}
 			index++;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Contains - uses the Quadratic Probing method to determine if the key exists in the hash
+	 * 
+	 * If no matches found after walking through table, return false
+	 * 
+	 * @param key the key
+	 * @return true, if successful
+	 */
+	private boolean contains_QP(int key) {
+		int st_index = hashFx(key);
+		int index;
+		
+		for (int i = 0; i < MAX_QP_LOOP; i++) {
+			index = (st_index + i * i) % tableSize;
+			
+			if (hashTable1[index] == -1) {
+				return false;
+			}
+			if (hashTable1[index] == key) {
+				return true;
+			}
 		}
 		
 		return false;
@@ -308,6 +410,36 @@ public class MyIntHash {
 		
 		return false;
 	}
+	
+	/**
+	 * Remove - uses Quadratic Problem method to evict a key from the hash, if it exists
+	 * 
+	 * @param key the key
+	 * @return true, if successful
+	 */
+	private boolean remove_QP(int key) {
+		int st_index = hashFx(key);
+		int index;
+		
+		for (int i = 0; i < MAX_QP_LOOP; i++) {
+			index = (st_index + i * i) % tableSize;
+
+			if (hashTable1[index] == key) { // found target number
+				if (((index < tableSize) && (hashTable1[index] != -1)) ||
+						((index >= tableSize) && (hashTable1[0] != -1))) {
+					hashTable1[index] = -2; // indicate that the entry has been removed
+					size--;
+					return true;
+				} else {
+					hashTable1[index] = -1; // indicate empty entry
+					size--;
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
 		
 	/**
 	 * Gets the hash at. Returns the value of the hash at the specified index, and (if required by the operating mode) the specified offset.
@@ -317,10 +449,11 @@ public class MyIntHash {
 	 * @param offset the offset
 	 * @return the hash at
 	 */
-	int getHashAt(int index, int offset) {
+	Integer getHashAt(int index, int offset) {
 		// TODO Part1: as you code this project, you will add different cases. for now, complete the case for Linear Probing
 		switch (mode) {
-		case Linear : return hashTable1[index]; // What needs to go here??? write this and uncomment
+			case Linear : return hashTable1[index]; // What needs to go here??? write this and uncomment
+			case Quadratic : return hashTable1[index];
 		}
 		return -1;
 	}
@@ -341,7 +474,11 @@ public class MyIntHash {
 	 */
 	public void clear() {
 		// TODO Part1: Write this method
-		initHashTable(hashTable1);
+		switch (mode) {
+			case Linear : initHashTable(hashTable1);
+			case Quadratic : initHashTable(hashTable1);
+			default : initHashTable(hashTable1);
+		}
 	}
 
 	/**
