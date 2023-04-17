@@ -158,7 +158,7 @@ class IntHashBenchmarkBTest {
 	 *
 	 * @param outFile the filename of file that will hold the data
 	 */
-	static void writeHashAnalysisData(String outFile) {
+		static void writeHashAnalysisData(String outFile) {
 		File outputFileA = new File("data/"+outFile);
 		String outStr = "";
 		try {
@@ -177,9 +177,9 @@ class IntHashBenchmarkBTest {
 				if (i == LL) hashImp = "LinkedList";
 				if (i == CUCKOO) hashImp = "Cuckoo";
 				for (int chunk = 0; chunk < NUM_BUCKETS; chunk++) {
-					outStr = hashImp;
+					outStr = hashImp+","+chunk;
 					for (int lp = 0; lp < NUM_LOOPS; lp++) {
-						outStr += ","+chunk+","+hashAnalysis[i][lp][chunk][0]+","+hashAnalysis[i][lp][chunk][1];
+						outStr += ","+hashAnalysis[i][lp][chunk][0]+","+hashAnalysis[i][lp][chunk][1];
 					}
 					bw.write(outStr+"\n");
 				}
