@@ -166,7 +166,7 @@ class IntHashBenchmarkBTest {
 			System.out.println("Writing Benchmark data to file: "+outputFileA.getName());
 			String hashImp = "";
 
-			bw.write("Hash Implementation");
+			bw.write("Hash Implementation,chunk");
 			for (int i = 0; i < NUM_LOOPS; i++) {
 				bw.write(",lf "+lfLimit[i]+" valid,lf "+lfLimit[i]+" empty");	
 			}
@@ -179,7 +179,7 @@ class IntHashBenchmarkBTest {
 				for (int chunk = 0; chunk < NUM_BUCKETS; chunk++) {
 					outStr = hashImp;
 					for (int lp = 0; lp < NUM_LOOPS; lp++) {
-						outStr += ","+hashAnalysis[i][lp][chunk][0]+","+hashAnalysis[i][lp][chunk][1];
+						outStr += ","+chunk+","+hashAnalysis[i][lp][chunk][0]+","+hashAnalysis[i][lp][chunk][1];
 					}
 					bw.write(outStr+"\n");
 				}
