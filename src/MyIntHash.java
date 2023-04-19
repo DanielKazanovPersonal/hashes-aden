@@ -1,4 +1,3 @@
-
 import java.util.LinkedList;
 
 // TODO: Auto-generated Javadoc
@@ -30,7 +29,6 @@ public class MyIntHash {
 	/** The hash table 1. */
 	private int[] hashTable1;
 	
-	
 	// The following variables will be defined but not used until later in the project..
 	/** The hash table 2. */
 	private int[] hashTable2;
@@ -43,6 +41,12 @@ public class MyIntHash {
 	
 	/** The limit for loops in add_QP, remove_QP and contains_QP. */
 	private int MAX_QP_LOOP;
+	
+	/** Counts amount of loops in add_Cuckoo method to prevent overflow */
+	private int recursiveCount;
+	
+	/** Amount of loops allowed before growing the hash */
+	private final static int MAX_RECURSIVE_COUNT = 20;
 	
 	/**
 	 * Instantiates a new my int hash. For Part1 JUnit Testing, the load_factor will be set to 1.0
@@ -69,6 +73,9 @@ public class MyIntHash {
 		
 		hashTableLL = new LinkedList[tableSize];
 		initHashTable(hashTableLL);
+		
+		hashTable2 = new int[tableSize];
+		initHashTable(hashTable2);
 	}
 
 	/**
@@ -100,6 +107,20 @@ public class MyIntHash {
 	}
 	
 	/**
+	 * Initializes the provided int[] hashTable1 and int[] hashTable2 for Cuckoo mode - setting all entries to -1
+	 * This method does not reset size to 0.
+	 * 
+	 * @param hashTable1 the primary hash table
+	 * @param hashTable2 the secondary hash table
+	 */
+	private void initHashTable(int[] hashTable1, int[] hashTable2) {
+		for (int i = 0; i < hashTable1.length; i++) {
+			hashTable1[i] = -1;
+			hashTable2[i] = -1;
+		}
+	}
+	
+	/**
 	 * Hash fx.  This is the hash function that translates the key into the index into the hash table.
 	 *
 	 * @param key the key
@@ -108,6 +129,16 @@ public class MyIntHash {
 	private int hashFx(int key) {
 		// TODO Part1: Write this method.
 		return key % tableSize;
+	}
+	
+	/**
+	 * Hash fx2. This is the hash function that translates the key into the index into the secondary hash table.
+	 * 
+	 * @param key the key
+	 * @return the int
+	 */
+	private int hashFx2(int key) {
+		return (key / tableSize) % tableSize;
 	}
 	
 	/**
@@ -123,6 +154,12 @@ public class MyIntHash {
 		//      Note that you cannot just use size in the numerator... 
 		//      Write the code to implement this check and call growHash() if required (no parameters)
 		double currentLoad = (size + 1.0) / tableSize;
+		
+		if (mode == MODE.Cuckoo) { // Cuckoo mode requires different load factor due to the use of two hash tables
+			currentLoad = (size + 1.0) / (tableSize * 2.0);
+
+		}
+		
 		if (currentLoad >= load_factor) {
 			growHash();
 		}
@@ -131,6 +168,7 @@ public class MyIntHash {
 			case Linear : return add_LP(key); 
 			case Quadratic : return add_QP(key);
 			case LinkedList : return add_LL(key);
+			case Cuckoo : return add_Cuckoo(key);
 			default : return add_LP(key);
 		}
 	}
@@ -147,6 +185,7 @@ public class MyIntHash {
 			case Linear : return contains_LP(key); 
 			case Quadratic : return contains_QP(key);
 			case LinkedList : return contains_LL(key);
+			case Cuckoo : return contains_Cuckoo(key);
 			default : return contains_LP(key);
 		}
 	}
@@ -163,6 +202,7 @@ public class MyIntHash {
 			case Linear : return remove_LP(key); 
 			case Quadratic : return remove_QP(key);
 			case LinkedList : return remove_LL(key);
+			case Cuckoo : return remove_Cuckoo(key);
 			default : return remove_LP(key);
 		}
 	}
@@ -178,7 +218,8 @@ public class MyIntHash {
 		switch (mode) {
 			case Linear: growHash(hashTable1,newSize); break;
 			case Quadratic : growHash_QP(hashTable1,newSize); break;
-			case LinkedList : growHash(hashTableLL,newSize); break;
+			case LinkedList : growHash(hashTableLL, newSize); break;
+			case Cuckoo : growHash(hashTable1, hashTable2, getNewTableSize(tableSize + 1000)); break;
 		}
 	}
 	
@@ -268,6 +309,38 @@ public class MyIntHash {
 		}
 	}
 	
+	
+	/**
+	 *  Grow hash. This is the specific function that will grow the hash table in Cuckoo mode.
+	 *  
+	 *  1. save the current hash tables, 
+	 *  2. create a new version of hash tables
+	 *  3. update tableSize and size
+	 *  4. add all valid entries from the old hash tables into the new hash tables
+	 *  5. change the growHash variable when growing hash (true if growing, false if finished)
+	 * 
+	 * @param pTable the primary table
+	 * @param sTable the secondary table
+	 * @param newSize the new size
+	 */
+	private void growHash(int[] pTable, int[] sTable, int newSize) {
+		int[] currentTable1 = pTable.clone(); // save the current hash table
+		int[] currentTable2 = sTable.clone(); // save the current hash table
+		hashTable1 = new int[newSize];
+		hashTable2 = new int[newSize];
+		initHashTable(hashTable1, hashTable2);
+		tableSize = newSize;
+		
+		for (int i = 0; i < currentTable1.length; i++) {
+			if (currentTable1[i] != -1) {
+				add(currentTable1[i]);
+			}
+			if (currentTable2[i] != -1) {
+				add(currentTable2[i]);
+			}
+		}
+	}
+	
 	/**
 	 * Gets the new table size. Finds the next prime number
 	 * that is greater than 2x the passed in size (startSize)
@@ -278,6 +351,10 @@ public class MyIntHash {
 	private int getNewTableSize(int startSize) {
 		// TODO Part2: Write this method
 		int newSize = startSize * 2; // greater than 2x the passed in size
+		
+		if (mode == MODE.Cuckoo) { // Cuckoo mode requires different startSize due to the use of two hash tables
+			newSize = startSize;
+		}
 		
 		while (!isPrime(newSize)) { // iterate through every number until prime number is found
 			newSize++;
@@ -396,6 +473,68 @@ public class MyIntHash {
 	}
 	
 	/**
+	 * Adds the key using the Cuckoo structure:
+	 * 
+	 * Only adds if key doesn't already exist, otherwise always successful
+	 * 
+	 * @param key the key
+	 * @return true, if successful
+	 */
+	private boolean add_Cuckoo(int key) {
+		if (contains_Cuckoo(key)) {
+			return false;
+		}
+		
+		recursiveCount = 0; // initialize loop count to 0 (start of new add cycle)
+		boolean placed = placeCuckoo(key, 1);
+		
+		if (placed == false) { // no space, retry adding to hash tables
+			growHash();
+			add_Cuckoo(key);
+		}
+		
+		size++;
+		return true; // successfully added to table
+	}
+	
+	/**
+	 * Recursive helper method for the add_Cuckoo method
+	 * 
+	 * @param key the key
+	 * @param table, the table
+	 * @return true, if successful
+	 */
+	private boolean placeCuckoo(int key, int table) {
+		int[] currentTable = hashTable1;
+		int index = hashFx(key);
+		
+		if (table == 2) {
+			currentTable = hashTable2;
+			index = hashFx2(key);
+		}
+		
+		if (currentTable[index] != -1) {
+			int evicted = currentTable[index];
+			currentTable[index] = key;
+			
+			if ((key == evicted && table == 2) || (recursiveCount >= MAX_RECURSIVE_COUNT)) {
+				return false;
+			} 
+			
+			if (table == 1) {
+				recursiveCount++;
+				return placeCuckoo(evicted, 2);
+			} else {
+				recursiveCount++;
+				return placeCuckoo(evicted, 1);
+			}
+		}
+		
+		currentTable[index] = key;
+		return true;
+	}
+	
+	/**
 	 * Contains - uses the Linear Probing method to determine if the key exists in the hash
 	 * A key condition is that there are no open spaces between any values with collisions, 
 	 * independent of where they are stored.
@@ -469,6 +608,20 @@ public class MyIntHash {
 		
 		return hashTableLL[index].contains(key);
 	}
+	
+	
+	/**
+	 * Contains - uses the Cuckoo structure to determine if the key exists in the hash
+	 * 
+	 * If no matches found return false
+	 * 
+	 * @param key the key
+	 * @return true, if successful
+	 */
+	private boolean contains_Cuckoo(int key) {
+		return (hashTable1[hashFx(key)] == key) || (hashTable2[hashFx2(key)] == key);
+	}
+	
 	
 	/**
 	 * Remove - uses the Linear Problem method to evict a key from the hash, if it exists
@@ -556,6 +709,28 @@ public class MyIntHash {
 		
 		return true;
 	}
+	
+	
+	/** 
+	 * Remove - uses Cuckoo structure to evict a key from the hash, if it exists
+	 * 
+	 * @param key the key
+	 * @return true, if successful
+	 */
+	private boolean remove_Cuckoo(int key) {
+		if (!contains_Cuckoo(key)) {
+			return false;
+		}
+		
+		if (hashTable1[hashFx(key)] == key) {
+			hashTable1[hashFx(key)] = -1;
+		} else {
+			hashTable2[hashFx2(key)] = -1;
+		}
+		
+		size--;
+		return true;
+	}
 		
 	/**
 	 * Gets the hash at. Returns the value of the hash at the specified index, and (if required by the operating mode) the specified offset.
@@ -578,6 +753,12 @@ public class MyIntHash {
 					return -1;
 				} else {
 					return hashTableLL[index].get(offset);
+				}
+			case Cuckoo :
+				if (offset == 0) {
+					return hashTable1[index];
+				} else {
+					return hashTable2[index];
 				}
 		}
 		return -1;
@@ -603,6 +784,7 @@ public class MyIntHash {
 			case Linear : initHashTable(hashTable1);
 			case Quadratic : initHashTable(hashTable1);
 			case LinkedList : initHashTable(hashTableLL);
+			case Cuckoo : initHashTable(hashTable1, hashTable2); size = 0;
 			default : initHashTable(hashTable1);
 		}
 	}
@@ -643,5 +825,4 @@ public class MyIntHash {
 	public int getTableSize() {
 		return tableSize;
 	}
-
 }
