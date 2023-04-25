@@ -52,12 +52,43 @@ public class MyIntHash {
 	 * Instantiates a new my int hash. For Part1 JUnit Testing, the load_factor will be set to 1.0
 	 *
 	 * @param mode the mode
-	 * @param load_factor the load fact or
+	 * @param load_factor the load factor
 	 */
 	public MyIntHash(MODE mode, double load_factor) {
 		// TODO Part1: initialize table size, size, mode, and load_factor
 		//             Instantiate hashTable1 and initialize it
 		tableSize = INITIAL_SIZE;
+		size = 0;
+		this.mode = mode;
+		this.load_factor = load_factor;
+		
+		hashTable1 = new int[tableSize];
+		initHashTable(hashTable1);
+		
+		if (MAX_QP_OFFSET >= tableSize / 2) {
+			MAX_QP_LOOP = tableSize / 2;
+		} else {
+			MAX_QP_LOOP = MAX_QP_OFFSET;
+		}
+		
+		hashTableLL = new LinkedList[tableSize];
+		initHashTable(hashTableLL);
+		
+		hashTable2 = new int[tableSize];
+		initHashTable(hashTable2);
+	}
+	
+	/**
+	 * Instantiates a new my int hash. This specific constructor is used for benchmarking assignment
+	 * 
+	 * @param mode the mode
+	 * @param load_factor the load factor
+	 * @param initialSize the initial size
+	 */
+	public MyIntHash(MODE mode, double load_factor, int initialSize) {
+		// TODO Part1: initialize table size, size, mode, and load_factor
+		//             Instantiate hashTable1 and initialize it
+		tableSize = initialSize;
 		size = 0;
 		this.mode = mode;
 		this.load_factor = load_factor;
@@ -824,5 +855,20 @@ public class MyIntHash {
 	 */
 	public int getTableSize() {
 		return tableSize;
+	}
+	
+	/**
+	 * Gets the current hash load.
+	 * 
+	 * @return the current hash load
+	 */
+	public int getCurrHashLoad() {
+		switch (mode) {
+			case Linear : return size / tableSize;
+			case Quadratic : return size / tableSize;
+			case LinkedList : return size / tableSize;
+			case Cuckoo : //TODO: add
+			default : return size / tableSize;
+		}
 	}
 }

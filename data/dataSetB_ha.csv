@@ -1,0 +1,401 @@
+Hash Implementation,chunk,lf 0.1 valid,lf 0.1 empty,lf 0.3 valid,lf 0.3 empty,lf 0.5 valid,lf 0.5 empty,lf 0.7 valid,lf 0.7 empty,lf 0.9 valid,lf 0.9 empty
+Linear Probing,0,0,101,0,101,0,101,0,101,0,101
+Linear Probing,1,0,101,0,101,0,101,0,101,0,101
+Linear Probing,2,0,101,0,101,0,101,0,101,0,101
+Linear Probing,3,0,101,0,101,0,101,0,101,0,101
+Linear Probing,4,0,101,0,101,0,101,0,101,0,101
+Linear Probing,5,0,101,0,101,0,101,0,101,0,101
+Linear Probing,6,0,101,0,101,0,101,0,101,0,101
+Linear Probing,7,0,101,0,101,0,101,0,101,0,101
+Linear Probing,8,0,101,0,101,0,101,0,101,0,101
+Linear Probing,9,0,101,0,101,0,101,0,101,0,101
+Linear Probing,10,0,101,0,101,0,101,0,101,0,101
+Linear Probing,11,0,101,0,101,0,101,0,101,0,101
+Linear Probing,12,0,101,0,101,0,101,0,101,0,101
+Linear Probing,13,0,101,0,101,0,101,0,101,0,101
+Linear Probing,14,0,101,0,101,0,101,0,101,0,101
+Linear Probing,15,0,101,0,101,0,101,0,101,0,101
+Linear Probing,16,0,101,0,101,0,101,0,101,0,101
+Linear Probing,17,0,101,0,101,0,101,0,101,0,101
+Linear Probing,18,0,101,0,101,0,101,0,101,0,101
+Linear Probing,19,0,101,0,101,0,101,0,101,0,101
+Linear Probing,20,0,101,0,101,0,101,0,101,0,101
+Linear Probing,21,0,101,0,101,0,101,0,101,0,101
+Linear Probing,22,0,101,0,101,0,101,0,101,0,101
+Linear Probing,23,0,101,0,101,0,101,0,101,0,101
+Linear Probing,24,0,101,0,101,0,101,0,101,0,101
+Linear Probing,25,0,101,0,101,0,101,0,101,0,101
+Linear Probing,26,0,101,0,101,0,101,0,101,0,101
+Linear Probing,27,0,101,0,101,0,101,0,101,0,101
+Linear Probing,28,0,101,0,101,0,101,0,101,0,101
+Linear Probing,29,0,101,0,101,0,101,0,101,0,101
+Linear Probing,30,0,101,0,101,0,101,0,101,0,101
+Linear Probing,31,0,101,0,101,0,101,0,101,0,101
+Linear Probing,32,0,101,0,101,0,101,0,101,0,101
+Linear Probing,33,0,101,0,101,0,101,0,101,0,101
+Linear Probing,34,0,101,0,101,0,101,0,101,0,101
+Linear Probing,35,0,101,0,101,0,101,0,101,0,101
+Linear Probing,36,0,101,0,101,0,101,0,101,0,101
+Linear Probing,37,0,101,0,101,0,101,0,101,0,101
+Linear Probing,38,0,101,0,101,0,101,0,101,0,101
+Linear Probing,39,0,101,0,101,0,101,0,101,0,101
+Linear Probing,40,0,101,0,101,0,101,0,101,0,101
+Linear Probing,41,0,101,0,101,0,101,0,101,0,101
+Linear Probing,42,0,101,0,101,0,101,0,101,0,101
+Linear Probing,43,0,101,0,101,0,101,0,101,0,101
+Linear Probing,44,0,101,0,101,0,101,0,101,0,101
+Linear Probing,45,0,101,0,101,0,101,0,101,0,101
+Linear Probing,46,0,101,0,101,0,101,0,101,0,101
+Linear Probing,47,0,101,0,101,0,101,0,101,0,101
+Linear Probing,48,0,101,0,101,0,101,0,101,0,101
+Linear Probing,49,0,101,0,101,0,101,0,101,0,101
+Linear Probing,50,0,101,0,101,0,101,0,101,0,101
+Linear Probing,51,0,101,0,101,0,101,0,101,0,101
+Linear Probing,52,0,101,0,101,0,101,0,101,0,101
+Linear Probing,53,0,101,0,101,0,101,0,101,0,101
+Linear Probing,54,0,101,0,101,0,101,0,101,0,101
+Linear Probing,55,0,101,0,101,0,101,0,101,0,101
+Linear Probing,56,0,101,0,101,0,101,0,101,0,101
+Linear Probing,57,0,101,0,101,0,101,0,101,0,101
+Linear Probing,58,0,101,0,101,0,101,0,101,0,101
+Linear Probing,59,0,101,0,101,0,101,0,101,0,101
+Linear Probing,60,0,101,0,101,0,101,0,101,0,101
+Linear Probing,61,0,101,0,101,0,101,0,101,0,101
+Linear Probing,62,0,101,0,101,0,101,0,101,0,101
+Linear Probing,63,0,101,0,101,0,101,0,101,0,101
+Linear Probing,64,0,101,0,101,0,101,0,101,0,101
+Linear Probing,65,0,101,0,101,0,101,0,101,0,101
+Linear Probing,66,0,101,0,101,0,101,0,101,0,101
+Linear Probing,67,0,101,0,101,0,101,0,101,0,101
+Linear Probing,68,0,101,0,101,0,101,0,101,0,101
+Linear Probing,69,0,101,0,101,0,101,0,101,0,101
+Linear Probing,70,0,101,0,101,0,101,0,101,0,101
+Linear Probing,71,0,101,0,101,0,101,0,101,0,101
+Linear Probing,72,0,101,0,101,0,101,0,101,0,101
+Linear Probing,73,0,101,0,101,0,101,0,101,0,101
+Linear Probing,74,0,101,0,101,0,101,0,101,0,101
+Linear Probing,75,0,101,0,101,0,101,0,101,0,101
+Linear Probing,76,0,101,0,101,0,101,0,101,0,101
+Linear Probing,77,0,101,0,101,0,101,0,101,0,101
+Linear Probing,78,0,101,0,101,0,101,0,101,0,101
+Linear Probing,79,0,101,0,101,0,101,0,101,0,101
+Linear Probing,80,0,101,0,101,0,101,0,101,0,101
+Linear Probing,81,0,101,0,101,0,101,0,101,0,101
+Linear Probing,82,0,101,0,101,0,101,0,101,0,101
+Linear Probing,83,0,101,0,101,0,101,0,101,0,101
+Linear Probing,84,0,101,0,101,0,101,0,101,0,101
+Linear Probing,85,0,101,0,101,0,101,0,101,0,101
+Linear Probing,86,0,101,0,101,0,101,0,101,0,101
+Linear Probing,87,0,101,0,101,0,101,0,101,0,101
+Linear Probing,88,0,101,0,101,0,101,0,101,0,101
+Linear Probing,89,0,101,0,101,0,101,0,101,0,101
+Linear Probing,90,0,101,0,101,0,101,0,101,0,101
+Linear Probing,91,0,101,0,101,0,101,0,101,0,101
+Linear Probing,92,0,101,0,101,0,101,0,101,0,101
+Linear Probing,93,0,101,0,101,0,101,0,101,0,101
+Linear Probing,94,0,101,0,101,0,101,0,101,0,101
+Linear Probing,95,0,101,0,101,0,101,0,101,0,101
+Linear Probing,96,0,101,0,101,0,101,0,101,0,101
+Linear Probing,97,0,101,0,101,0,101,0,101,0,101
+Linear Probing,98,0,101,0,101,0,101,0,101,0,101
+Linear Probing,99,0,10,0,10,0,10,0,10,0,10
+Quadratic Probing,0,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,1,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,2,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,3,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,4,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,5,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,6,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,7,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,8,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,9,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,10,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,11,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,12,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,13,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,14,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,15,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,16,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,17,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,18,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,19,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,20,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,21,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,22,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,23,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,24,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,25,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,26,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,27,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,28,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,29,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,30,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,31,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,32,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,33,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,34,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,35,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,36,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,37,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,38,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,39,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,40,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,41,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,42,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,43,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,44,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,45,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,46,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,47,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,48,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,49,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,50,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,51,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,52,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,53,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,54,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,55,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,56,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,57,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,58,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,59,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,60,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,61,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,62,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,63,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,64,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,65,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,66,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,67,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,68,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,69,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,70,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,71,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,72,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,73,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,74,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,75,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,76,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,77,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,78,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,79,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,80,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,81,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,82,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,83,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,84,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,85,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,86,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,87,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,88,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,89,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,90,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,91,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,92,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,93,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,94,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,95,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,96,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,97,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,98,0,0,0,0,0,0,0,0,0,0
+Quadratic Probing,99,0,0,0,0,0,0,0,0,0,0
+LinkedList,0,0,0,0,0,0,0,0,0,0,0
+LinkedList,1,0,0,0,0,0,0,0,0,0,0
+LinkedList,2,0,0,0,0,0,0,0,0,0,0
+LinkedList,3,0,0,0,0,0,0,0,0,0,0
+LinkedList,4,0,0,0,0,0,0,0,0,0,0
+LinkedList,5,0,0,0,0,0,0,0,0,0,0
+LinkedList,6,0,0,0,0,0,0,0,0,0,0
+LinkedList,7,0,0,0,0,0,0,0,0,0,0
+LinkedList,8,0,0,0,0,0,0,0,0,0,0
+LinkedList,9,0,0,0,0,0,0,0,0,0,0
+LinkedList,10,0,0,0,0,0,0,0,0,0,0
+LinkedList,11,0,0,0,0,0,0,0,0,0,0
+LinkedList,12,0,0,0,0,0,0,0,0,0,0
+LinkedList,13,0,0,0,0,0,0,0,0,0,0
+LinkedList,14,0,0,0,0,0,0,0,0,0,0
+LinkedList,15,0,0,0,0,0,0,0,0,0,0
+LinkedList,16,0,0,0,0,0,0,0,0,0,0
+LinkedList,17,0,0,0,0,0,0,0,0,0,0
+LinkedList,18,0,0,0,0,0,0,0,0,0,0
+LinkedList,19,0,0,0,0,0,0,0,0,0,0
+LinkedList,20,0,0,0,0,0,0,0,0,0,0
+LinkedList,21,0,0,0,0,0,0,0,0,0,0
+LinkedList,22,0,0,0,0,0,0,0,0,0,0
+LinkedList,23,0,0,0,0,0,0,0,0,0,0
+LinkedList,24,0,0,0,0,0,0,0,0,0,0
+LinkedList,25,0,0,0,0,0,0,0,0,0,0
+LinkedList,26,0,0,0,0,0,0,0,0,0,0
+LinkedList,27,0,0,0,0,0,0,0,0,0,0
+LinkedList,28,0,0,0,0,0,0,0,0,0,0
+LinkedList,29,0,0,0,0,0,0,0,0,0,0
+LinkedList,30,0,0,0,0,0,0,0,0,0,0
+LinkedList,31,0,0,0,0,0,0,0,0,0,0
+LinkedList,32,0,0,0,0,0,0,0,0,0,0
+LinkedList,33,0,0,0,0,0,0,0,0,0,0
+LinkedList,34,0,0,0,0,0,0,0,0,0,0
+LinkedList,35,0,0,0,0,0,0,0,0,0,0
+LinkedList,36,0,0,0,0,0,0,0,0,0,0
+LinkedList,37,0,0,0,0,0,0,0,0,0,0
+LinkedList,38,0,0,0,0,0,0,0,0,0,0
+LinkedList,39,0,0,0,0,0,0,0,0,0,0
+LinkedList,40,0,0,0,0,0,0,0,0,0,0
+LinkedList,41,0,0,0,0,0,0,0,0,0,0
+LinkedList,42,0,0,0,0,0,0,0,0,0,0
+LinkedList,43,0,0,0,0,0,0,0,0,0,0
+LinkedList,44,0,0,0,0,0,0,0,0,0,0
+LinkedList,45,0,0,0,0,0,0,0,0,0,0
+LinkedList,46,0,0,0,0,0,0,0,0,0,0
+LinkedList,47,0,0,0,0,0,0,0,0,0,0
+LinkedList,48,0,0,0,0,0,0,0,0,0,0
+LinkedList,49,0,0,0,0,0,0,0,0,0,0
+LinkedList,50,0,0,0,0,0,0,0,0,0,0
+LinkedList,51,0,0,0,0,0,0,0,0,0,0
+LinkedList,52,0,0,0,0,0,0,0,0,0,0
+LinkedList,53,0,0,0,0,0,0,0,0,0,0
+LinkedList,54,0,0,0,0,0,0,0,0,0,0
+LinkedList,55,0,0,0,0,0,0,0,0,0,0
+LinkedList,56,0,0,0,0,0,0,0,0,0,0
+LinkedList,57,0,0,0,0,0,0,0,0,0,0
+LinkedList,58,0,0,0,0,0,0,0,0,0,0
+LinkedList,59,0,0,0,0,0,0,0,0,0,0
+LinkedList,60,0,0,0,0,0,0,0,0,0,0
+LinkedList,61,0,0,0,0,0,0,0,0,0,0
+LinkedList,62,0,0,0,0,0,0,0,0,0,0
+LinkedList,63,0,0,0,0,0,0,0,0,0,0
+LinkedList,64,0,0,0,0,0,0,0,0,0,0
+LinkedList,65,0,0,0,0,0,0,0,0,0,0
+LinkedList,66,0,0,0,0,0,0,0,0,0,0
+LinkedList,67,0,0,0,0,0,0,0,0,0,0
+LinkedList,68,0,0,0,0,0,0,0,0,0,0
+LinkedList,69,0,0,0,0,0,0,0,0,0,0
+LinkedList,70,0,0,0,0,0,0,0,0,0,0
+LinkedList,71,0,0,0,0,0,0,0,0,0,0
+LinkedList,72,0,0,0,0,0,0,0,0,0,0
+LinkedList,73,0,0,0,0,0,0,0,0,0,0
+LinkedList,74,0,0,0,0,0,0,0,0,0,0
+LinkedList,75,0,0,0,0,0,0,0,0,0,0
+LinkedList,76,0,0,0,0,0,0,0,0,0,0
+LinkedList,77,0,0,0,0,0,0,0,0,0,0
+LinkedList,78,0,0,0,0,0,0,0,0,0,0
+LinkedList,79,0,0,0,0,0,0,0,0,0,0
+LinkedList,80,0,0,0,0,0,0,0,0,0,0
+LinkedList,81,0,0,0,0,0,0,0,0,0,0
+LinkedList,82,0,0,0,0,0,0,0,0,0,0
+LinkedList,83,0,0,0,0,0,0,0,0,0,0
+LinkedList,84,0,0,0,0,0,0,0,0,0,0
+LinkedList,85,0,0,0,0,0,0,0,0,0,0
+LinkedList,86,0,0,0,0,0,0,0,0,0,0
+LinkedList,87,0,0,0,0,0,0,0,0,0,0
+LinkedList,88,0,0,0,0,0,0,0,0,0,0
+LinkedList,89,0,0,0,0,0,0,0,0,0,0
+LinkedList,90,0,0,0,0,0,0,0,0,0,0
+LinkedList,91,0,0,0,0,0,0,0,0,0,0
+LinkedList,92,0,0,0,0,0,0,0,0,0,0
+LinkedList,93,0,0,0,0,0,0,0,0,0,0
+LinkedList,94,0,0,0,0,0,0,0,0,0,0
+LinkedList,95,0,0,0,0,0,0,0,0,0,0
+LinkedList,96,0,0,0,0,0,0,0,0,0,0
+LinkedList,97,0,0,0,0,0,0,0,0,0,0
+LinkedList,98,0,0,0,0,0,0,0,0,0,0
+LinkedList,99,0,0,0,0,0,0,0,0,0,0
+Cuckoo,0,0,0,0,0,0,0,0,0,0,0
+Cuckoo,1,0,0,0,0,0,0,0,0,0,0
+Cuckoo,2,0,0,0,0,0,0,0,0,0,0
+Cuckoo,3,0,0,0,0,0,0,0,0,0,0
+Cuckoo,4,0,0,0,0,0,0,0,0,0,0
+Cuckoo,5,0,0,0,0,0,0,0,0,0,0
+Cuckoo,6,0,0,0,0,0,0,0,0,0,0
+Cuckoo,7,0,0,0,0,0,0,0,0,0,0
+Cuckoo,8,0,0,0,0,0,0,0,0,0,0
+Cuckoo,9,0,0,0,0,0,0,0,0,0,0
+Cuckoo,10,0,0,0,0,0,0,0,0,0,0
+Cuckoo,11,0,0,0,0,0,0,0,0,0,0
+Cuckoo,12,0,0,0,0,0,0,0,0,0,0
+Cuckoo,13,0,0,0,0,0,0,0,0,0,0
+Cuckoo,14,0,0,0,0,0,0,0,0,0,0
+Cuckoo,15,0,0,0,0,0,0,0,0,0,0
+Cuckoo,16,0,0,0,0,0,0,0,0,0,0
+Cuckoo,17,0,0,0,0,0,0,0,0,0,0
+Cuckoo,18,0,0,0,0,0,0,0,0,0,0
+Cuckoo,19,0,0,0,0,0,0,0,0,0,0
+Cuckoo,20,0,0,0,0,0,0,0,0,0,0
+Cuckoo,21,0,0,0,0,0,0,0,0,0,0
+Cuckoo,22,0,0,0,0,0,0,0,0,0,0
+Cuckoo,23,0,0,0,0,0,0,0,0,0,0
+Cuckoo,24,0,0,0,0,0,0,0,0,0,0
+Cuckoo,25,0,0,0,0,0,0,0,0,0,0
+Cuckoo,26,0,0,0,0,0,0,0,0,0,0
+Cuckoo,27,0,0,0,0,0,0,0,0,0,0
+Cuckoo,28,0,0,0,0,0,0,0,0,0,0
+Cuckoo,29,0,0,0,0,0,0,0,0,0,0
+Cuckoo,30,0,0,0,0,0,0,0,0,0,0
+Cuckoo,31,0,0,0,0,0,0,0,0,0,0
+Cuckoo,32,0,0,0,0,0,0,0,0,0,0
+Cuckoo,33,0,0,0,0,0,0,0,0,0,0
+Cuckoo,34,0,0,0,0,0,0,0,0,0,0
+Cuckoo,35,0,0,0,0,0,0,0,0,0,0
+Cuckoo,36,0,0,0,0,0,0,0,0,0,0
+Cuckoo,37,0,0,0,0,0,0,0,0,0,0
+Cuckoo,38,0,0,0,0,0,0,0,0,0,0
+Cuckoo,39,0,0,0,0,0,0,0,0,0,0
+Cuckoo,40,0,0,0,0,0,0,0,0,0,0
+Cuckoo,41,0,0,0,0,0,0,0,0,0,0
+Cuckoo,42,0,0,0,0,0,0,0,0,0,0
+Cuckoo,43,0,0,0,0,0,0,0,0,0,0
+Cuckoo,44,0,0,0,0,0,0,0,0,0,0
+Cuckoo,45,0,0,0,0,0,0,0,0,0,0
+Cuckoo,46,0,0,0,0,0,0,0,0,0,0
+Cuckoo,47,0,0,0,0,0,0,0,0,0,0
+Cuckoo,48,0,0,0,0,0,0,0,0,0,0
+Cuckoo,49,0,0,0,0,0,0,0,0,0,0
+Cuckoo,50,0,0,0,0,0,0,0,0,0,0
+Cuckoo,51,0,0,0,0,0,0,0,0,0,0
+Cuckoo,52,0,0,0,0,0,0,0,0,0,0
+Cuckoo,53,0,0,0,0,0,0,0,0,0,0
+Cuckoo,54,0,0,0,0,0,0,0,0,0,0
+Cuckoo,55,0,0,0,0,0,0,0,0,0,0
+Cuckoo,56,0,0,0,0,0,0,0,0,0,0
+Cuckoo,57,0,0,0,0,0,0,0,0,0,0
+Cuckoo,58,0,0,0,0,0,0,0,0,0,0
+Cuckoo,59,0,0,0,0,0,0,0,0,0,0
+Cuckoo,60,0,0,0,0,0,0,0,0,0,0
+Cuckoo,61,0,0,0,0,0,0,0,0,0,0
+Cuckoo,62,0,0,0,0,0,0,0,0,0,0
+Cuckoo,63,0,0,0,0,0,0,0,0,0,0
+Cuckoo,64,0,0,0,0,0,0,0,0,0,0
+Cuckoo,65,0,0,0,0,0,0,0,0,0,0
+Cuckoo,66,0,0,0,0,0,0,0,0,0,0
+Cuckoo,67,0,0,0,0,0,0,0,0,0,0
+Cuckoo,68,0,0,0,0,0,0,0,0,0,0
+Cuckoo,69,0,0,0,0,0,0,0,0,0,0
+Cuckoo,70,0,0,0,0,0,0,0,0,0,0
+Cuckoo,71,0,0,0,0,0,0,0,0,0,0
+Cuckoo,72,0,0,0,0,0,0,0,0,0,0
+Cuckoo,73,0,0,0,0,0,0,0,0,0,0
+Cuckoo,74,0,0,0,0,0,0,0,0,0,0
+Cuckoo,75,0,0,0,0,0,0,0,0,0,0
+Cuckoo,76,0,0,0,0,0,0,0,0,0,0
+Cuckoo,77,0,0,0,0,0,0,0,0,0,0
+Cuckoo,78,0,0,0,0,0,0,0,0,0,0
+Cuckoo,79,0,0,0,0,0,0,0,0,0,0
+Cuckoo,80,0,0,0,0,0,0,0,0,0,0
+Cuckoo,81,0,0,0,0,0,0,0,0,0,0
+Cuckoo,82,0,0,0,0,0,0,0,0,0,0
+Cuckoo,83,0,0,0,0,0,0,0,0,0,0
+Cuckoo,84,0,0,0,0,0,0,0,0,0,0
+Cuckoo,85,0,0,0,0,0,0,0,0,0,0
+Cuckoo,86,0,0,0,0,0,0,0,0,0,0
+Cuckoo,87,0,0,0,0,0,0,0,0,0,0
+Cuckoo,88,0,0,0,0,0,0,0,0,0,0
+Cuckoo,89,0,0,0,0,0,0,0,0,0,0
+Cuckoo,90,0,0,0,0,0,0,0,0,0,0
+Cuckoo,91,0,0,0,0,0,0,0,0,0,0
+Cuckoo,92,0,0,0,0,0,0,0,0,0,0
+Cuckoo,93,0,0,0,0,0,0,0,0,0,0
+Cuckoo,94,0,0,0,0,0,0,0,0,0,0
+Cuckoo,95,0,0,0,0,0,0,0,0,0,0
+Cuckoo,96,0,0,0,0,0,0,0,0,0,0
+Cuckoo,97,0,0,0,0,0,0,0,0,0,0
+Cuckoo,98,0,0,0,0,0,0,0,0,0,0
+Cuckoo,99,0,0,0,0,0,0,0,0,0,0
