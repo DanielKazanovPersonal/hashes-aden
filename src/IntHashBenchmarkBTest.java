@@ -257,10 +257,10 @@ class IntHashBenchmarkBTest {
 			System.out.println("\n\nBenchmark "+dataSet.replaceAll(".csv","")+" Linear Hash Implementation - Iteration "+iter);
 			for (int loop = 0; loop < lfLimit.length; loop++) {
 				// TODO: add elements to the hash until it is just greater than the load factor limit
-				double loadFactorLimit = (hash.size() + 1.0) / hash.getTableSize();
+				double loadFactorLimit = hash.getCurrHashLoad();
 				while (loadFactorLimit < lfLimit[loop]) {
 					hash.add(dSet[dataIndex++]);
-					loadFactorLimit = (hash.size() + 1.0) / hash.getTableSize();
+					loadFactorLimit = hash.getCurrHashLoad();
 				}
 				// this will generate a hundred random keys that will exist or miss in the hash
 				if (iter == 0 ) {
@@ -320,10 +320,10 @@ class IntHashBenchmarkBTest {
 			// TODO: Write this method - but use QP for reporting the data
 			for (int loop = 0; loop < lfLimit.length; loop++) {
 				// TODO: add elements to the hash until it is just greater than the load factor limit
-				double loadFactorLimit = (hash.size() + 1.0) / hash.getTableSize();
+				double loadFactorLimit = hash.getCurrHashLoad();
 				while (loadFactorLimit < lfLimit[loop]) {
 					hash.add(dSet[dataIndex++]);
-					loadFactorLimit = (hash.size() + 1.0) / hash.getTableSize();
+					loadFactorLimit = hash.getCurrHashLoad();
 				}
 				// this will generate a hundred random keys that will exist or miss in the hash
 				if (iter == 0 ) {
@@ -383,7 +383,7 @@ class IntHashBenchmarkBTest {
 			//TODO: Write this method - but use LL for reporting the data
 			for (int loop = 0; loop < lfLimit.length; loop++) {
 				// TODO: add elements to the hash until it is just greater than the load factor limit
-				double loadFactorLimit = (hash.size() + 1.0) / hash.getTableSize();
+				double loadFactorLimit = hash.getCurrHashLoad();
 				while (loadFactorLimit < lfLimit[loop]) {
 					hash.add(dSet[dataIndex++]);
 					loadFactorLimit = hash.getCurrHashLoad();
@@ -641,11 +641,15 @@ class IntHashBenchmarkBTest {
 			for (int i = 0; (i < chunk) && (htIndex< tableSize); i++ ) {
 				Integer data = hash.getHashAt(htIndex, 0);
 				if (data != null) {
-					int index = 0;
-					while (data != null) {
-						data = hash.getHashAt(htIndex, index); 
+//					int index = 0;
+//					while (data != null) {
+//						data = hash.getHashAt(htIndex, index); 
+//						valid++;
+//						index++;
+//					}
+					
+					if (data.intValue() >= 0) {
 						valid++;
-						index++;
 					}
 				}
 				else
