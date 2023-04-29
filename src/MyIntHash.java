@@ -862,13 +862,13 @@ public class MyIntHash {
 	 * 
 	 * @return the current hash load
 	 */
-	public int getCurrHashLoad() {
+	public double getCurrHashLoad() {
 		switch (mode) {
-			case Linear : return size / tableSize;
-			case Quadratic : return size / tableSize;
-			case LinkedList : return size / tableSize;
-			case Cuckoo : //TODO: add
-			default : return size / tableSize;
+			case Linear : return (size + 1.0) / tableSize;
+			case Quadratic : return (size + 1.0) / tableSize;
+			case LinkedList : return (size + 1.0) / tableSize;
+			case Cuckoo : return (size + 1.0) / (tableSize * 2.0);
+			default : return (size + 1.0) / tableSize;
 		}
 	}
 }
