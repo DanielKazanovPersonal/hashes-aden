@@ -597,7 +597,7 @@ class IntHashBenchmarkBTest {
 	}
 
 	/**
-	 * Description...
+	 * Analyze QP hash.
 	 * 
 	 * @param loop indicates which load factor was used for this hash
 	 */
@@ -625,7 +625,7 @@ class IntHashBenchmarkBTest {
 	}
 	
 	/**
-	 * Description..
+	 * Analyze LL hash.
 	 * 
 	 * @param loop indicates which load factor was used for this hash
 	 */
@@ -640,17 +640,8 @@ class IntHashBenchmarkBTest {
 			int empty = 0;
 			for (int i = 0; (i < chunk) && (htIndex< tableSize); i++ ) {
 				Integer data = hash.getHashAt(htIndex, 0);
-				if (data != null) {
-//					int index = 0;
-//					while (data != null) {
-//						data = hash.getHashAt(htIndex, index); 
-//						valid++;
-//						index++;
-//					}
-					
-					if (data.intValue() >= 0) {
-						valid++;
-					}
+				if (data != null && data.intValue() >= 0) {
+					valid++;
 				}
 				else
 					empty++;
@@ -663,7 +654,7 @@ class IntHashBenchmarkBTest {
 	}
 	
 	/**
-	 * Description...
+	 * Analyze Cuckoo hash.
 	 * 
 	 * @param loop indicates which load factor was used for this hash
 	 */
