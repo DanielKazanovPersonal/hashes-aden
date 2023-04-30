@@ -486,7 +486,7 @@ class IntHashBenchmarkDTest {
 
 		start = System.nanoTime();
 		//TODO: write the code to perform contains() on each key in a[]
-		for (int i = 0; i < a.length; i++) {
+		for (int i : a) {
 			hash.contains(i);
 		}
 		stop = System.nanoTime();
@@ -505,7 +505,7 @@ class IntHashBenchmarkDTest {
 
 		start = System.nanoTime();
 		//TODO: write the code to perform remove() on each key in a[]
-		for (int i = 0; i < a.length; i++) {
+		for (int i : a) {
 			hash.remove(i);
 		}
 		stop = System.nanoTime();
@@ -524,7 +524,7 @@ class IntHashBenchmarkDTest {
 
 		start = System.nanoTime();
 		//TODO: write the code to perform add() on each key in a[]
-		for (int i = 0; i < a.length; i++) {
+		for (int i : a) {
 			hash.add(i);
 		}
 		stop = System.nanoTime();
